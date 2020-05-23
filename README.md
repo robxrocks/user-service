@@ -9,7 +9,7 @@ source .env/bin/activate
 ```
 ### Install dependencies
 ```buildoutcfg
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Run on localhost
