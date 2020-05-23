@@ -2,6 +2,7 @@ from flask_restful import Resource, reqparse
 
 from models.user import User
 from models.email import Email
+from models.phone import Phone
 
 
 class UserAddApi(Resource):
@@ -21,6 +22,11 @@ class UserAddApi(Resource):
                         required=True,
                         help='mail is mandatory'
                         )
+    parser.add_argument('phoneNumber',
+                        type=str,
+                        required=True,
+                        help='Phone number is mandatory'
+                        )
 
     def post(self):
         request_body = UserAddApi.parser.parse_args()
@@ -31,6 +37,8 @@ class UserAddApi(Resource):
             user_id = user.json()['id']
             email = Email(request_body['email'], user_id)
             email.save()
+            phone = Phone(request_body['phoneNumber'], user_id)
+            phone.save()
         except:
             return {"message": "An error occurred while inserting the user."}
         return user.json(), 201

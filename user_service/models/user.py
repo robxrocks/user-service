@@ -9,6 +9,7 @@ class User(db.Model):
     firstName = db.Column(db.String(50))
 
     emails = db.relationship('Email', lazy='dynamic')
+    phones = db.relationship('Phone', lazy='dynamic')
 
     def __init__(self, lastName, firstName):
         self.lastName = lastName
@@ -19,7 +20,8 @@ class User(db.Model):
         return {'id': self.id,
                 'lastName': self.lastName,
                 'firsName': self.firstName,
-                'emails': [email.json() for email in self.emails.all()]
+                'emails': [email.json() for email in self.emails.all()],
+                'phones': [phone.json() for phone in self.phones.all()]
                 }
 
     @classmethod
