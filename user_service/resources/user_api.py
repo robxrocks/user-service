@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse
 
 from models.user import User
+from models.email import Email
 
 
 class UserAddApi(Resource):
@@ -15,15 +16,23 @@ class UserAddApi(Resource):
                         required=True,
                         help='firstName is mandatory'
                         )
+    parser.add_argument('email',
+                        type=str,
+                        required=True,
+                        help='mail is mandatory'
+                        )
 
     def post(self):
         request_body = UserAddApi.parser.parse_args()
-        user = User(**request_body)
+        user = User(request_body['lastName'], request_body['firstName'])
 
         try:
             user.save()
+            user_id = user.json()['id']
+            email = Email(request_body['email'], user_id)
+            email.save()
         except:
-            return {"message": "An error occurred while inserting the item."}
+            return {"message": "An error occurred while inserting the user."}
         return user.json(), 201
 
 

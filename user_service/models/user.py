@@ -2,20 +2,24 @@ from db import db
 
 
 class User(db.Model):
-    __tablename__ = 'users'
+    __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True)
     lastName = db.Column(db.String(50))
     firstName = db.Column(db.String(50))
 
+    emails = db.relationship('Email', lazy='dynamic')
+
     def __init__(self, lastName, firstName):
         self.lastName = lastName
         self.firstName = firstName
 
+
     def json(self):
         return {'id': self.id,
                 'lastName': self.lastName,
-                'firsName': self.firstName
+                'firsName': self.firstName,
+                'emails': [email.json() for email in self.emails.all()]
                 }
 
     @classmethod
