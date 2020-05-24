@@ -11,6 +11,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 db.init_app(app)
 
+
 @app.before_first_request
 def create_tables():
     db.create_all()
@@ -29,8 +30,6 @@ api.add_resource(PhoneApi, '/phone/<int:phone_id>')
 
 
 if __name__ == '__main__':
-    # db.init_app(app)
-
     # Ensure FOREIGN KEY for sqlite3
     if 'sqlite' in app.config['SQLALCHEMY_DATABASE_URI']:
         def _fk_pragma_on_connect(dbapi_con, con_record):  # noqa
