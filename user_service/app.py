@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
-
+db.init_app(app)
 
 @app.before_first_request
 def create_tables():
@@ -25,11 +25,11 @@ api.add_resource(PhoneAddApi, '/user/<int:user_id>/phone')
 
 # Remove this endpoint when finished
 api.add_resource(EmailApi, '/email/<int:email_id>')
-api.add_resource(PhoneApi, '/phone/<int:email_id>')
+api.add_resource(PhoneApi, '/phone/<int:phone_id>')
 
 
 if __name__ == '__main__':
-    db.init_app(app)
+    # db.init_app(app)
 
     # Ensure FOREIGN KEY for sqlite3
     if 'sqlite' in app.config['SQLALCHEMY_DATABASE_URI']:

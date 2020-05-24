@@ -8,8 +8,8 @@ class User(db.Model):
     lastName = db.Column(db.String(50))
     firstName = db.Column(db.String(50))
 
-    emails = db.relationship('Email', lazy='dynamic')
-    phones = db.relationship('Phone', lazy='dynamic')
+    emails = db.relationship('Email', lazy='dynamic', cascade="delete")
+    phones = db.relationship('Phone', lazy='dynamic', cascade="delete")
 
     def __init__(self, lastName, firstName):
         self.lastName = lastName

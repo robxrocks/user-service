@@ -27,4 +27,4 @@ class PhoneApi(Resource):
         phone = Phone.get_by_id(phone_id)
         if phone:
             return phone.json()
-        return {'message': 'Phone number not found'}, 404
+        return {}, 404

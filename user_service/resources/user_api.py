@@ -49,7 +49,7 @@ class UserGetDeleteApi(Resource):
         user = User.get_by_id(user_id)
         if user:
             return user.json()
-        return {'message': 'User not found'}, 404
+        return {}, 404
 
     def delete(self, user_id):
         user = User.get_by_id(user_id)
@@ -63,4 +63,4 @@ class UserGetByNameApi(Resource):
         user = User.get_by_name(lastName, firstName)
         if user:
             return user.json()
-        return {'message': 'User not found'}, 404
+        return {}, 404

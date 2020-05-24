@@ -27,4 +27,4 @@ class EmailApi(Resource):
         email = Email.get_by_id(email_id)
         if email:
             return email.json()
-        return {'message': 'Email not found'}, 404
+        return {}, 404
