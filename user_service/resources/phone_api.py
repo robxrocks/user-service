@@ -22,6 +22,20 @@ class PhoneAddApi(Resource):
         return phone.json(), 201
 
 
+class PhoneUpdateApi(Resource):
+    def put(self, phone_id):
+        request_body = PhoneAddApi.parser.parse_args()
+        phone = Phone.get_by_id(phone_id)
+
+        if phone is None:
+            return {'number': request_body['number']}
+        else:
+            phone.number = request_body['number']
+            phone.save()
+
+        return phone.json()
+
+
 class PhoneApi(Resource):
     def get(self, phone_id):
         phone = Phone.get_by_id(phone_id)

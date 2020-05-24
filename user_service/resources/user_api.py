@@ -10,22 +10,22 @@ class UserAddApi(Resource):
     parser.add_argument('lastName',
                         type=str,
                         required=True,
-                        help='lastName is mandatory'
+                        help='lastName is a mandatory field'
                         )
     parser.add_argument('firstName',
                         type=str,
                         required=True,
-                        help='firstName is mandatory'
+                        help='firstName is a mandatory field'
                         )
     parser.add_argument('mail',
                         type=str,
                         required=True,
-                        help='mail is mandatory'
+                        help='mail is a mandatory field'
                         )
     parser.add_argument('number',
                         type=str,
                         required=True,
-                        help='Phone number is mandatory'
+                        help='number is a mandatory field'
                         )
 
     def post(self):

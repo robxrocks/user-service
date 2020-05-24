@@ -23,18 +23,13 @@ class EmailAddApi(Resource):
 
 
 class EmailUpdateApi(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument('mail',
-                        type=str,
-                        required=True,
-                        help='mail is mandatory'
-                        )
-
     def put(self, email_id):
         request_body = EmailAddApi.parser.parse_args()
         email = Email.get_by_id(email_id)
 
-        if email is not None:
+        if email is None:
+            return {'mail': request_body['mail']}
+        else:
             email.mail = request_body['mail']
             email.save()
 
