@@ -24,6 +24,7 @@ FLASK_ENV=development flask run
 ```
 
 ## Run in Docker
+Note: requires Docker to be installed
 ```buildoutcfg
 docker-compose up
 ```
