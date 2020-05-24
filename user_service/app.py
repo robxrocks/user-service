@@ -1,15 +1,17 @@
 from flask import Flask
 from flask_restful import Api
+from swagger import swagger
 from db import db
 from resources.user_api import UserAddApi, UserGetDeleteApi, UserGetByNameApi
-from resources.email_api import EmailAddApi, EmailUpdateApi, EmailApi
-from resources.phone_api import PhoneAddApi, PhoneUpdateApi, PhoneApi
+from resources.email_api import EmailAddApi, EmailUpdateApi
+from resources.phone_api import PhoneAddApi, PhoneUpdateApi
 
 app = Flask(__name__)
 # TODO move database uri to env variable
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
+api = swagger.docs(Api(app), apiVersion='0.1')
 db.init_app(app)
 
 
@@ -27,10 +29,6 @@ api.add_resource(EmailUpdateApi, '/email/<int:email_id>')
 
 api.add_resource(PhoneAddApi, '/user/<int:user_id>/phone')
 api.add_resource(PhoneUpdateApi, '/phone/<int:phone_id>')
-
-# TODO Remove this endpoint when finished
-api.add_resource(EmailApi, '/email/<int:email_id>')
-api.add_resource(PhoneApi, '/phone/<int:phone_id>')
 
 
 if __name__ == '__main__':

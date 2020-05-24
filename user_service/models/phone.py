@@ -1,7 +1,14 @@
 from db import db
+from swagger import swagger
+
+from flask_restful import fields
 
 
+@swagger.model
 class Phone(db.Model):
+    resource_fields = {
+        'number': fields.String()
+    }
     __tablename__ = 'phone'
 
     id = db.Column(db.Integer, primary_key=True)

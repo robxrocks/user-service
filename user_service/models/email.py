@@ -1,7 +1,14 @@
 from db import db
+from swagger import swagger
+
+from flask_restful import fields
 
 
+@swagger.model
 class Email(db.Model):
+    resource_fields = {
+        'mail': fields.String()
+    }
     __tablename__ = 'email'
 
     id = db.Column(db.Integer, primary_key=True)

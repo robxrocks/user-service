@@ -1,4 +1,5 @@
 from flask_restful import Resource, reqparse
+from swagger import swagger
 
 from models.phone import Phone
 
@@ -11,6 +12,30 @@ class PhoneAddApi(Resource):
                         help='Phone number is mandatory'
                         )
 
+    @swagger.operation(
+        notes='Creates a Phone data',
+        nickname='create Phone',
+        parameters=[
+            {
+              "name": "body",
+              "description": "Phone attributes",
+              "required": True,
+              "allowMultiple": False,
+              "dataType": Phone.__name__,
+              "paramType": "body"
+            }
+          ],
+        responseMessages=[
+            {
+              "code": 201,
+              "message": "Created"
+            },
+            {
+              "code": 400,
+              "message": "Invalid input"
+            }
+          ]
+        )
     def post(self, user_id):
         request_body = PhoneAddApi.parser.parse_args()
         phone = Phone(number=request_body['number'], user_id=user_id)
@@ -23,6 +48,26 @@ class PhoneAddApi(Resource):
 
 
 class PhoneUpdateApi(Resource):
+    @swagger.operation(
+        notes='Updated a Phone data',
+        nickname='update Phone',
+        parameters=[
+            {
+              "name": "body",
+              "description": "Phone attributes",
+              "required": True,
+              "allowMultiple": False,
+              "dataType": Phone.__name__,
+              "paramType": "body"
+            }
+          ],
+        responseMessages=[
+            {
+              "code": 200,
+              "message": "OK"
+            }
+          ]
+        )
     def put(self, phone_id):
         request_body = PhoneAddApi.parser.parse_args()
         phone = Phone.get_by_id(phone_id)
@@ -34,11 +79,3 @@ class PhoneUpdateApi(Resource):
             phone.save()
 
         return phone.json()
-
-
-class PhoneApi(Resource):
-    def get(self, phone_id):
-        phone = Phone.get_by_id(phone_id)
-        if phone:
-            return phone.json()
-        return {}, 404
