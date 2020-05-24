@@ -23,8 +23,7 @@ class Phone(db.Model):
 
     def json(self):
         return {'id': self.id,
-                'number': self.number,
-                # 'user_id': self.user_id
+                'number': self.number
                 }
 
     @classmethod

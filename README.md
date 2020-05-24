@@ -28,3 +28,7 @@ Note: requires Docker to be installed
 ```buildoutcfg
 docker-compose up
 ```
+
+## Swagger
+To access Swagger go to
+http://127.0.0.1:5000/api/spec.html#!/spec

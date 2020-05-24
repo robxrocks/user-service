@@ -23,8 +23,7 @@ class Email(db.Model):
 
     def json(self):
         return {'id': self.id,
-                'mail': self.mail,
-                # 'user_id': self.user_id
+                'mail': self.mail
                 }
 
     @classmethod
