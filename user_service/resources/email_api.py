@@ -1,7 +1,6 @@
 from flask_restful import Resource, reqparse
-from swagger import swagger
-
 from models.email import Email
+from swagger import swagger
 
 
 class EmailAddApi(Resource):

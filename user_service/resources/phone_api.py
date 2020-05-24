@@ -1,7 +1,6 @@
 from flask_restful import Resource, reqparse
-from swagger import swagger
-
 from models.phone import Phone
+from swagger import swagger
 
 
 class PhoneAddApi(Resource):

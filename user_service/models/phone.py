@@ -1,7 +1,6 @@
 from db import db
-from swagger import swagger
-
 from flask_restful import fields
+from swagger import swagger
 
 
 @swagger.model

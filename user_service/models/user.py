@@ -1,11 +1,10 @@
-from db import db
-from swagger import swagger
-
-from models.email import Email
-from models.phone import Phone
 import json
 
+from db import db
 from flask_restful import fields
+from models.email import Email
+from models.phone import Phone
+from swagger import swagger
 
 
 @swagger.model

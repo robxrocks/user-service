@@ -1,7 +1,6 @@
 from flask_restful import Resource, reqparse
-from swagger import swagger
-
 from models.user import User
+from swagger import swagger
 
 
 class UserAddApi(Resource):

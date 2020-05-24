@@ -1,10 +1,10 @@
+from db import db
 from flask import Flask
 from flask_restful import Api
-from swagger import swagger
-from db import db
-from resources.user_api import UserAddApi, UserGetDeleteApi, UserGetByNameApi
 from resources.email_api import EmailAddApi, EmailUpdateApi
 from resources.phone_api import PhoneAddApi, PhoneUpdateApi
+from resources.user_api import UserAddApi, UserGetDeleteApi, UserGetByNameApi
+from swagger import swagger
 
 app = Flask(__name__)
 # TODO move database uri to env variable
