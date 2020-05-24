@@ -17,12 +17,12 @@ class UserAddApi(Resource):
                         required=True,
                         help='firstName is mandatory'
                         )
-    parser.add_argument('email',
+    parser.add_argument('mail',
                         type=str,
                         required=True,
                         help='mail is mandatory'
                         )
-    parser.add_argument('phoneNumber',
+    parser.add_argument('number',
                         type=str,
                         required=True,
                         help='Phone number is mandatory'
@@ -35,9 +35,9 @@ class UserAddApi(Resource):
         try:
             user.save()
             user_id = user.json()['id']
-            email = Email(request_body['email'], user_id)
+            email = Email(request_body['mail'], user_id)
             email.save()
-            phone = Phone(request_body['phoneNumber'], user_id)
+            phone = Phone(request_body['number'], user_id)
             phone.save()
         except:
             return {"message": "An error occurred while inserting the user."}

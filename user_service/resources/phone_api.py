@@ -5,7 +5,7 @@ from models.phone import Phone
 
 class PhoneAddApi(Resource):
     parser = reqparse.RequestParser()
-    parser.add_argument('phoneNumber',
+    parser.add_argument('number',
                         type=str,
                         required=True,
                         help='Phone number is mandatory'
@@ -13,7 +13,7 @@ class PhoneAddApi(Resource):
 
     def post(self, user_id):
         request_body = PhoneAddApi.parser.parse_args()
-        phone = Phone(number=request_body['phoneNumber'], user_id=user_id)
+        phone = Phone(number=request_body['number'], user_id=user_id)
 
         try:
             phone.save()

@@ -15,7 +15,12 @@ pip install -r requirements.txt
 ## Run on localhost
 ```buildoutcfg
 cd user_service
-python app.py
+flask run
+```
+## Debug on localhost
+```buildoutcfg
+cd user_service
+FLASK_ENV=development flask run
 ```
 
 ## Run in Docker
