@@ -1,5 +1,8 @@
+from flask import request
 from flask_restful import Resource, reqparse
 from models.user import User
+from schemas.email_schema import EmailSchema
+from schemas.phone_schema import PhoneSchema
 from swagger import swagger
 
 
@@ -52,6 +55,19 @@ class UserAddApi(Resource):
         )
     def post(self):
         request_body = UserAddApi.parser.parse_args()
+        data = request.get_json()
+        print(data['emails'])
+
+        try:
+            EmailSchema(many=True).load(data['emails'])
+        except:
+            return {"message": "Invalid email"}, 400
+
+        try:
+            PhoneSchema(many=True).load(data['phoneNumbers'])
+        except:
+            return {"message": "Invalid Phone number"}, 400
+
         user = User(request_body['lastName'],
                     request_body['firstName'],
                     request_body['emails'],
