@@ -39,7 +39,6 @@ class User(db.Model):
 
         for phone in list(phone_numbers):
             phone = json.loads(phone.replace("\'", "\""))
-            print(phone['number'])
             self.phones.append(Phone(phone['number'], self.id))
 
     def json(self):
