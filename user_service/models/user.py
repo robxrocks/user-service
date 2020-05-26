@@ -10,7 +10,7 @@ from swagger import swagger
 @swagger.model
 # @swagger.nested(
 #     emails=Email.__name__,
-#     phones=Phone.__name__)
+#     phoneNumbers=Phone.__name__)
 class User(db.Model):
     resource_fields = {
         'lastName': fields.String(),
@@ -18,7 +18,7 @@ class User(db.Model):
         'emails': fields.List(fields.Nested(Email.resource_fields)),
         'phoneNumbers': fields.List(fields.Nested(Phone.resource_fields))
     }
-    required = ['lastName', 'firstName', 'emails', 'phones']
+    required = ['lastName', 'firstName', 'emails', 'phoneNumbers']
 
     __tablename__ = 'user'
 

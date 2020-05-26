@@ -8,6 +8,8 @@ class Phone(db.Model):
     resource_fields = {
         'number': fields.String()
     }
+    required = ['number']
+
     __tablename__ = 'phone'
 
     id = db.Column(db.Integer, primary_key=True)

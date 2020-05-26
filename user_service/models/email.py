@@ -8,6 +8,8 @@ class Email(db.Model):
     resource_fields = {
         'mail': fields.String()
     }
+    required = ['mail']
+
     __tablename__ = 'email'
 
     id = db.Column(db.Integer, primary_key=True)
