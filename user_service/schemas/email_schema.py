@@ -1,5 +1,5 @@
-from marshmallow import Schema, fields
+from marshmallow import Schema, fields, validate
 
 
 class EmailSchema(Schema):
-    mail = fields.Str()
+    mail = fields.Str(required=True, validate=validate.Length(min=7))

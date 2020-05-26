@@ -4,7 +4,7 @@ from swagger import swagger
 
 
 class EmailAddApi(Resource):
-    parser = reqparse.RequestParser()
+    parser = reqparse.RequestParser(bundle_errors=True)
     parser.add_argument('mail',
                         type=str,
                         required=True,

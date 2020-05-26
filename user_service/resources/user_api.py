@@ -7,7 +7,7 @@ from swagger import swagger
 
 
 class UserAddApi(Resource):
-    parser = reqparse.RequestParser()
+    parser = reqparse.RequestParser(bundle_errors=True)
     parser.add_argument('lastName',
                         type=str,
                         required=True,
@@ -56,7 +56,11 @@ class UserAddApi(Resource):
     def post(self):
         request_body = UserAddApi.parser.parse_args()
         data = request.get_json()
-        print(data['emails'])
+
+        if not request_body['lastName']:
+            return {"message": "Invalid lastName"}, 400
+        if not request_body['firstName']:
+            return {"message": "Invalid firstName"}, 400
 
         try:
             EmailSchema(many=True).load(data['emails'])

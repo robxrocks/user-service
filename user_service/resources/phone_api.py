@@ -4,7 +4,7 @@ from swagger import swagger
 
 
 class PhoneAddApi(Resource):
-    parser = reqparse.RequestParser()
+    parser = reqparse.RequestParser(bundle_errors=True)
     parser.add_argument('number',
                         type=str,
                         required=True,
@@ -38,6 +38,9 @@ class PhoneAddApi(Resource):
     def post(self, user_id):
         request_body = PhoneAddApi.parser.parse_args()
         phone = Phone(number=request_body['number'], user_id=user_id)
+
+        if not request_body['lastName']:
+            return {"message": "Invalid lastName"}, 400
 
         try:
             phone.save()
