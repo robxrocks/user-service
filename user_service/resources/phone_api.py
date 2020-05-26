@@ -48,7 +48,7 @@ class PhoneAddApi(Resource):
 
 class PhoneUpdateApi(Resource):
     @swagger.operation(
-        notes='Updated a Phone data',
+        notes='Updates a Phone data',
         nickname='update Phone',
         parameters=[
             {

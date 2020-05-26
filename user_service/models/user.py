@@ -16,7 +16,7 @@ class User(db.Model):
         'lastName': fields.String(),
         'firstName': fields.String(),
         'emails': fields.List(fields.Nested(Email.resource_fields)),
-        'phones': fields.List(fields.Nested(Phone.resource_fields))
+        'phoneNumbers': fields.List(fields.Nested(Phone.resource_fields))
     }
     required = ['lastName', 'firstName', 'emails', 'phones']
 
